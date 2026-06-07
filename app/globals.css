@@ -1,0 +1,612 @@
+/* ─────────────────────────────────────────────────────────
+   Fonts
+───────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Didact+Gothic&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────
+   Design Tokens
+───────────────────────────────────────────────────────── */
+:root {
+  /* Background palette — deep blush-black */
+  --bg-base: #0d0608;
+  --bg-mid: #130a0c;
+  --bg-surface: #1c1014;
+
+  /* Gold / champagne */
+  --gold-light: #f0d98a;
+  --gold-mid: #c49c6b;
+  --gold-dark: #8a6b42;
+  --gold-gradient: linear-gradient(135deg, #f0d98a 0%, #c49c6b 50%, #8a6b42 100%);
+
+  /* Rose / blush */
+  --rose-soft: #f2c4ce;
+  --rose-mid: #d4788f;
+  --rose-deep: #8b3a52;
+  --rose-gradient: linear-gradient(135deg, #f2c4ce 0%, #d4788f 60%, #8b3a52 100%);
+
+  /* Pearl / cream */
+  --pearl: #f5e6d3;
+  --pearl-dim: rgba(245, 230, 211, 0.6);
+  --pearl-ghost: rgba(245, 230, 211, 0.12);
+
+  /* Text */
+  --text-primary: #f5e6d3;
+  --text-secondary: rgba(245, 230, 211, 0.55);
+  --text-muted: rgba(245, 230, 211, 0.3);
+
+  /* Borders */
+  --border-gold: rgba(196, 156, 107, 0.25);
+  --border-rose: rgba(212, 120, 143, 0.2);
+}
+
+/* ─────────────────────────────────────────────────────────
+   Reset & Base
+───────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--text-primary);
+  background: var(--bg-base);
+  font-family: 'Didact Gothic', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.02em;
+}
+
+/* ── Serif headings ── */
+h1,
+h2,
+h3,
+h4,
+h5,
+.font-serif {
+  font-family: 'Playfair Display', serif;
+  font-weight: 500;
+  color: var(--pearl);
+}
+
+/* ── Selection ── */
+::selection {
+  background: rgba(196, 156, 107, 0.25);
+  color: var(--gold-light);
+}
+
+/* ─────────────────────────────────────────────────────────
+   Scrollbar
+───────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-gold);
+  border-radius: 2px;
+}
+
+/* ─────────────────────────────────────────────────────────
+   Loading Screen
+───────────────────────────────────────────────────────── */
+.loading-screen {
+  min-height: 100svh;
+  background: var(--bg-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.loading-ring {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border-gold);
+  border-top-color: var(--gold-light);
+  animation: spin 1.2s linear infinite;
+}
+
+.loading-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────
+   Main Wrapper
+───────────────────────────────────────────────────────── */
+.luxury-main {
+  min-height: 100svh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ─────────────────────────────────────────────────────────
+   Background Layers
+───────────────────────────────────────────────────────── */
+.bg-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Warm radial glows */
+.bg-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.18;
+}
+
+.bg-glow--top {
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80vw;
+  height: 70vh;
+  background: radial-gradient(ellipse, #c49c6b 0%, transparent 70%);
+}
+
+.bg-glow--left {
+  top: 30%;
+  left: -15%;
+  width: 50vw;
+  height: 60vh;
+  background: radial-gradient(ellipse, #8b3a52 0%, transparent 70%);
+  opacity: 0.12;
+}
+
+.bg-glow--right {
+  bottom: 10%;
+  right: -15%;
+  width: 45vw;
+  height: 55vh;
+  background: radial-gradient(ellipse, #c49c6b 0%, transparent 70%);
+  opacity: 0.1;
+}
+
+/* Lace-like subtle grid */
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(196, 156, 107, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(196, 156, 107, 0.04) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+/* Vignette */
+.bg-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, var(--bg-base) 100%);
+}
+
+/* ─────────────────────────────────────────────────────────
+   Ornamental Top Border
+───────────────────────────────────────────────────────── */
+.ornament-top {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.5rem 2rem 0;
+}
+
+.ornament-line {
+  flex: 1;
+  max-width: 200px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold-mid));
+}
+
+.ornament-line:last-child {
+  background: linear-gradient(to left, transparent, var(--gold-mid));
+}
+
+.ornament-diamond {
+  width: 16px;
+  height: 16px;
+  opacity: 0.85;
+  animation: float 4s ease-in-out infinite;
+}
+
+/* ─────────────────────────────────────────────────────────
+   Section Utilities
+───────────────────────────────────────────────────────── */
+.section-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Eyebrow label */
+.eyebrow {
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold-mid);
+  margin: 0 0 1rem;
+}
+
+/* Section heading */
+.section-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.15;
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 2.5rem;
+}
+
+/* ─────────────────────────────────────────────────────────
+   Section Dividers
+───────────────────────────────────────────────────────── */
+.section-divider {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.5rem 3rem;
+}
+
+.divider-wing {
+  flex: 1;
+  max-width: 300px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border-gold));
+}
+
+.divider-wing:last-child {
+  background: linear-gradient(to left, transparent, var(--border-gold));
+}
+
+.divider-petal {
+  font-size: 0.6rem;
+  color: var(--gold-mid);
+  letter-spacing: 0.5em;
+  opacity: 0.7;
+}
+
+/* ─────────────────────────────────────────────────────────
+   Countdown Section
+───────────────────────────────────────────────────────── */
+.countdown-section {
+  position: relative;
+  z-index: 10;
+  padding: 4rem 0 5rem;
+  text-align: center;
+}
+
+/* ─────────────────────────────────────────────────────────
+   RSVP Section
+───────────────────────────────────────────────────────── */
+.rsvp-section {
+  position: relative;
+  z-index: 10;
+  padding: 5rem 1.5rem 6rem;
+}
+
+.rsvp-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.1;
+  background: var(--rose-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 1rem;
+}
+
+.rsvp-subtext {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 480px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.8;
+}
+
+.rsvp-subtext em {
+  color: var(--rose-soft);
+  font-style: italic;
+}
+
+.attendee-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+
+/* ─────────────────────────────────────────────────────────
+   Footer
+───────────────────────────────────────────────────────── */
+.luxury-footer {
+  position: relative;
+  z-index: 10;
+  padding: 4rem 2rem 3rem;
+  text-align: center;
+}
+
+.footer-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.rule-line {
+  flex: 1;
+  max-width: 200px;
+  height: 1px;
+  background: var(--border-gold);
+}
+
+.rule-motif {
+  font-size: 1.1rem;
+  color: var(--gold-mid);
+  opacity: 0.6;
+}
+
+.footer-copy {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  margin: 0 0 0.4rem;
+}
+
+.footer-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0 0 2rem;
+}
+
+.footer-admin {
+  margin-top: 1.5rem;
+}
+
+.admin-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1.2rem;
+  border-radius: 100px;
+  border: 1px solid var(--border-gold);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all 0.35s ease;
+  font-family: 'Didact Gothic', sans-serif;
+}
+
+.admin-link:hover {
+  border-color: var(--gold-mid);
+  color: var(--gold-light);
+  background: rgba(196, 156, 107, 0.07);
+}
+
+.admin-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--rose-mid);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* ─────────────────────────────────────────────────────────
+   Shared Glass Card utility
+───────────────────────────────────────────────────────── */
+.glass-card {
+  background: rgba(28, 16, 20, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-gold);
+  border-radius: 2px;
+}
+
+/* Layered gold border accent */
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(240, 217, 138, 0.3), transparent 50%, rgba(196, 156, 107, 0.15));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ─────────────────────────────────────────────────────────
+   Gold text utility
+───────────────────────────────────────────────────────── */
+.text-gold {
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─────────────────────────────────────────────────────────
+   Rose text utility
+───────────────────────────────────────────────────────── */
+.text-rose {
+  background: var(--rose-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─────────────────────────────────────────────────────────
+   Button styles (for RSVPForm / child components)
+───────────────────────────────────────────────────────── */
+.btn-luxury {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2.5rem;
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bg-base);
+  background: var(--gold-gradient);
+  border: none;
+  border-radius: 1px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.btn-luxury::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.12);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-luxury:hover::after {
+  opacity: 1;
+}
+
+.btn-luxury:active {
+  transform: translateY(1px);
+}
+
+/* ─────────────────────────────────────────────────────────
+   Input styles (for RSVPForm)
+───────────────────────────────────────────────────────── */
+.input-luxury {
+  width: 100%;
+  background: rgba(245, 230, 211, 0.04);
+  border: 1px solid var(--border-gold);
+  border-radius: 1px;
+  padding: 0.85rem 1.1rem;
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: 0.88rem;
+  color: var(--pearl);
+  letter-spacing: 0.04em;
+  outline: none;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.input-luxury::placeholder {
+  color: var(--text-muted);
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+}
+
+.input-luxury:focus {
+  border-color: var(--gold-mid);
+  background: rgba(245, 230, 211, 0.07);
+}
+
+/* ─────────────────────────────────────────────────────────
+   Tailwind utility override — keeps glass class working
+───────────────────────────────────────────────────────── */
+@layer utilities {
+  .glass {
+    background: rgba(28, 16, 20, 0.65);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-gold);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────
+   Keyframes
+───────────────────────────────────────────────────────── */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────
+   Responsive
+───────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .ornament-line {
+    max-width: 80px;
+  }
+
+  .divider-wing {
+    max-width: 100px;
+  }
+}
