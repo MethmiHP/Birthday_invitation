@@ -35,7 +35,7 @@ export default function AttendeeCounter() {
         const channel = supabase.channel(`attendee-updates-${Math.random()}`);
 
         channel
-            .on('postgres_changes', { event: '*', table: 'guests' }, () => {
+            .on('postgres_changes' as any, { event: '*', table: 'guests' }, () => {
                 fetchCount();
             })
             .subscribe();
