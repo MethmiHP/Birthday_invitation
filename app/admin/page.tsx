@@ -77,7 +77,7 @@ export default function AdminDashboard() {
                 const channel = supabase.channel(`admin-changes-${Math.random()}`);
 
                 channel
-                    .on('postgres_changes', { event: '*', table: 'guests' }, () => {
+                    .on('postgres_changes' as any, { event: '*', table: 'guests' }, () => {
                         fetchData();
                     })
                     .subscribe();
