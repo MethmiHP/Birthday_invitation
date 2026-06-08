@@ -136,8 +136,12 @@ export default function RSVPForm() {
                             min="1"
                             max="10"
                             className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-500/50 transition-all"
-                            value={formData.guest_count}
-                            onChange={(e) => setFormData({ ...formData, guest_count: parseInt(e.target.value) })}
+                            value={formData.guest_count || ''}
+                            onFocus={(e) => e.target.select()}
+                            onChange={(e) => {
+                                const val = parseInt(e.target.value);
+                                setFormData({ ...formData, guest_count: isNaN(val) ? 1 : val });
+                            }}
                         />
                     </div>
                 </div>
