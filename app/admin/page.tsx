@@ -6,12 +6,14 @@ import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     Users,
-    UserCheck,
-    UserX,
+    CheckCircle,
+    XCircle,
+    Cake,
     LayoutDashboard,
     LogOut,
     RefreshCw,
-    Loader2
+    Loader2,
+    PartyPopper
 } from 'lucide-react';
 import StatsCard from '@/components/admin/StatsCard';
 import GuestList from '@/components/admin/GuestList';
@@ -92,7 +94,7 @@ export default function AdminDashboard() {
 
     const handleLogout = async () => {
         await supabase.auth.signOut();
-        router.push('/login');
+        router.push('/');
     };
 
     if (loading || !user) {
@@ -110,14 +112,9 @@ export default function AdminDashboard() {
             {/* Header */}
             <header className="border-b border-white/10 bg-white/5 backdrop-blur-md sticky top-0 z-50">
                 <div className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                        <div className="p-2 bg-gradient-to-br from-pink-500 to-purple-600 rounded-xl">
-                            <LayoutDashboard size={24} className="text-white" />
-                        </div>
-                        <div>
-                            <h1 className="text-xl font-bold tracking-tight">Admin Dashboard</h1>
-                            <p className="text-xs text-white/40 uppercase font-bold tracking-widest">Birthday Invitation</p>
-                        </div>
+                    <div>
+                        <h1 className="text-xl font-bold tracking-tight">Admin Dashboard</h1>
+                        <p className="text-xs text-white/40 uppercase font-bold tracking-widest">Birthday Invitation</p>
                     </div>
 
                     <div className="flex items-center gap-4">
@@ -156,14 +153,14 @@ export default function AdminDashboard() {
                     <StatsCard
                         title="Total RSVPs"
                         value={stats.totalInvitees}
-                        icon={Users}
+                        icon={PartyPopper}
                         color="bg-blue-500"
                         delay={0.1}
                     />
                     <StatsCard
                         title="Attending"
                         value={stats.totalAttending}
-                        icon={UserCheck}
+                        icon={CheckCircle}
                         color="bg-green-500"
                         delay={0.2}
                     />
@@ -177,7 +174,7 @@ export default function AdminDashboard() {
                     <StatsCard
                         title="Declined"
                         value={stats.totalDeclined}
-                        icon={UserX}
+                        icon={XCircle}
                         color="bg-red-500"
                         delay={0.4}
                     />
@@ -223,8 +220,18 @@ export default function AdminDashboard() {
                 </div>
             </main>
 
-            <footer className="py-12 border-t border-white/5 text-center text-white/20 text-sm">
+            <footer className="py-12 border-t border-white/5 text-center text-white/20 text-sm flex flex-col items-center justify-center gap-3">
                 <p>&copy; 2026 Admin Panel • Secure Managed Environment</p>
+                <div className="flex items-center gap-2.5 text-xs text-white/40 px-3 py-1.5 rounded-full border border-white/5 bg-white/5 backdrop-blur-sm">
+                  <span>Created by</span>
+                  <a href="https://unovar.com" target="_blank" rel="noopener noreferrer" className="flex items-center hover:opacity-100 transition-opacity duration-300">
+                    <img 
+                      src="/images/logo.png" 
+                      alt="Unovar Logo" 
+                      className="h-4.5 w-auto opacity-50 hover:opacity-100 transition-opacity duration-300"
+                    />
+                  </a>
+                </div>
             </footer>
         </div>
     );

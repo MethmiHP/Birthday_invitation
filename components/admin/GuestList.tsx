@@ -95,7 +95,8 @@ export default function GuestList({ guests, onRefresh }: GuestListProps) {
                 </div>
             </div>
 
-            <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden overflow-x-auto shadow-2xl">
+            {/* Desktop Table View */}
+            <div className="hidden md:block bg-white/5 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
                 <table className="w-full text-left border-collapse">
                     <thead>
                         <tr className="bg-white/10 text-white/50 text-sm uppercase tracking-wider">
@@ -124,8 +125,8 @@ export default function GuestList({ guests, onRefresh }: GuestListProps) {
                                     </td>
                                     <td className="px-6 py-4">
                                         <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest ${guest.attendance_status === 'attending'
-                                                ? 'bg-green-500/20 text-green-400 border border-green-500/30'
-                                                : 'bg-red-500/20 text-red-400 border border-red-500/30'
+                                            ? 'bg-green-500/20 text-green-400 border border-green-500/30'
+                                            : 'bg-red-500/20 text-red-400 border border-red-500/30'
                                             }`}>
                                             {guest.attendance_status}
                                         </span>
@@ -152,6 +153,72 @@ export default function GuestList({ guests, onRefresh }: GuestListProps) {
                         )}
                     </tbody>
                 </table>
+            </div>
+
+            {/* Mobile Cards View */}
+            <div className="block md:hidden space-y-4">
+                {filteredGuests.length === 0 ? (
+                    <div className="bg-white/5 border border-white/10 rounded-2xl p-8 text-center text-white/30 italic">
+                        No guests found
+                    </div>
+                ) : (
+                    filteredGuests.map((guest) => (
+                        <div key={guest.id} className="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-4 shadow-xl relative overflow-hidden">
+                            {/* Attendance Status Indicator */}
+                            <div className={`absolute top-0 left-0 w-1 h-full ${
+                                guest.attendance_status === 'attending' ? 'bg-green-500' : 'bg-red-500'
+                            }`} />
+
+                            <div className="flex justify-between items-start pl-2">
+                                <div>
+                                    <h4 className="font-bold text-lg text-white">{guest.full_name}</h4>
+                                    {guest.phone && (
+                                        <a href={`tel:${guest.phone}`} className="text-xs text-white/50 flex items-center gap-1.5 mt-1 hover:text-pink-400 transition-colors">
+                                            <Phone size={12} /> {guest.phone}
+                                        </a>
+                                    )}
+                                </div>
+                                <button
+                                    onClick={() => handleDelete(guest.id)}
+                                    className="p-2 text-white/30 hover:text-red-500 hover:bg-red-500/10 rounded-xl transition-all"
+                                    title="Delete RSVP"
+                                >
+                                    <Trash2 size={18} />
+                                </button>
+                            </div>
+
+                            <div className="flex items-center justify-between gap-3 pt-2 pl-2 border-t border-white/5">
+                                <div className="flex gap-2 items-center">
+                                    <span className="text-xs text-white/40 font-medium">Status:</span>
+                                    <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-widest ${
+                                        guest.attendance_status === 'attending'
+                                            ? 'bg-green-500/10 text-green-400 border border-green-500/20'
+                                            : 'bg-red-500/10 text-red-400 border border-red-500/20'
+                                    }`}>
+                                        {guest.attendance_status}
+                                    </span>
+                                </div>
+                                
+                                <div className="flex gap-2 items-center">
+                                    <span className="text-xs text-white/40 font-medium">Guests count:</span>
+                                    <span className="font-mono text-sm text-pink-400 font-bold bg-pink-500/10 px-2.5 py-0.5 rounded-md border border-pink-500/20">
+                                        {guest.guest_count}
+                                    </span>
+                                </div>
+                            </div>
+
+                            {guest.message && (
+                                <div className="pl-2 pt-3 border-t border-white/5">
+                                    <span className="text-xs text-white/40 block font-medium mb-1">Message:</span>
+                                    <div className="flex items-start gap-2 bg-white/5 p-3 rounded-xl border border-white/5">
+                                        <MessageSquare size={13} className="mt-1 shrink-0 opacity-40 animate-pulse" />
+                                        <p className="text-xs text-white/70 italic leading-relaxed whitespace-pre-wrap">{guest.message}</p>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    ))
+                )}
             </div>
         </div>
     );

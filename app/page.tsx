@@ -10,6 +10,7 @@ import AttendeeCounter from '@/components/invitation/AttendeeCounter';
 import MusicToggle from '@/components/invitation/MusicToggle';
 import FloatingDecorations from '@/components/invitation/FloatingDecorations';
 import WelcomePopup from '@/components/invitation/WelcomePopup';
+import FireworksBg from '@/components/invitation/FireworksBg';
 import { Toaster } from 'react-hot-toast';
 import { Loader2 } from 'lucide-react';
 
@@ -49,12 +50,14 @@ export default function Home() {
       <FloatingDecorations />
 
       {/* Background Glow */}
-      <div className="fixed inset-0 pointer-events-none">
+      <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,rgba(236,72,153,0.15),rgba(255,255,255,0))]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(139,92,246,0.1),rgba(255,255,255,0))]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_100%_100%,rgba(236,72,153,0.1),rgba(255,255,255,0))]" />
         <div className="absolute inset-x-0 bottom-0 top-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:60px_60px]" />
       </div>
+
+      <FireworksBg />
 
       <MusicToggle />
 
@@ -84,11 +87,24 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="py-20 text-center text-white/30 text-sm">
-        <p>&copy; 2026 {birthdayName}'s Birthday Bash. All rights reserved.</p>
-        <p className="mt-2 italic">Design with ❤️ for a special day.</p>
+      <footer className="py-20 text-center text-white/30 text-sm flex flex-col items-center justify-center gap-4">
+        <div>
+          <p>&copy; 2026 {birthdayName}'s Birthday Bash. All rights reserved.</p>
+          <p className="mt-2 italic">Design with ❤️ for a special day.</p>
+        </div>
 
-        <div className="mt-8">
+        <div className="flex items-center gap-2.5 text-xs text-white/40 mt-2 px-4 py-2 rounded-full border border-white/5 bg-white/5 backdrop-blur-sm">
+          <span>Created by</span>
+          <a href="https://unovar.com" target="_blank" rel="noopener noreferrer" className="flex items-center hover:opacity-100 transition-opacity duration-300">
+            <img 
+              src="/images/logo.png" 
+              alt="Unovar Logo" 
+              className="h-5 w-auto opacity-60 hover:opacity-100 transition-opacity duration-300"
+            />
+          </a>
+        </div>
+
+        <div className="mt-4">
           <a
             href="/login"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/5 hover:border-white/20 hover:bg-white/5 hover:text-white transition-all text-xs uppercase tracking-widest font-bold"
