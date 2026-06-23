@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { supabase } from '@/lib/supabase';
 import Hero from '@/components/invitation/Hero';
 import Countdown from '@/components/invitation/Countdown';
@@ -10,13 +10,61 @@ import AttendeeCounter from '@/components/invitation/AttendeeCounter';
 import MusicToggle from '@/components/invitation/MusicToggle';
 import FloatingDecorations from '@/components/invitation/FloatingDecorations';
 import WelcomePopup from '@/components/invitation/WelcomePopup';
-import FireworksBg from '@/components/invitation/FireworksBg';
 import { Toaster } from 'react-hot-toast';
 import { Loader2 } from 'lucide-react';
 
 export default function Home() {
   const [settings, setSettings] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const fireworkContainerRef = useRef<HTMLDivElement | null>(null);
+
+  // One-time firework burst when "Enter Celebration" is clicked
+  useEffect(() => {
+    const handleEnter = async () => {
+      const { Fireworks } = await import('fireworks-js');
+
+      const container = document.createElement('div');
+      container.style.cssText =
+        'position:fixed;inset:0;pointer-events:none;z-index:50';
+      document.body.appendChild(container);
+
+      const fw = new Fireworks(container, {
+        autoresize: true,
+        opacity: 0.6,
+        acceleration: 1.05,
+        friction: 0.97,
+        gravity: 1.5,
+        particles: 80,
+        traceLength: 3,
+        traceSpeed: 10,
+        explosion: 8,
+        intensity: 20,
+        flickering: 50,
+        lineStyle: 'round',
+        hue: { min: 0, max: 360 },
+        delay: { min: 15, max: 30 },
+        rocketsPoint: { min: 40, max: 60 },
+        lineWidth: {
+          explosion: { min: 1, max: 3 },
+          trace: { min: 1, max: 2 },
+        },
+        brightness: { min: 50, max: 90 },
+        decay: { min: 0.015, max: 0.03 },
+        mouse: { click: false, move: false, max: 1 },
+      });
+
+      fw.start();
+
+      // Stop after 2.5 s and clean up
+      setTimeout(() => {
+        fw.stop();
+        container.remove();
+      }, 2500);
+    };
+
+    window.addEventListener('celebration-entered', handleEnter, { once: true });
+    return () => window.removeEventListener('celebration-entered', handleEnter);
+  }, []);
 
   useEffect(() => {
     async function fetchSettings() {
@@ -57,7 +105,6 @@ export default function Home() {
         <div className="absolute inset-x-0 bottom-0 top-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:60px_60px]" />
       </div>
 
-      <FireworksBg />
 
       <MusicToggle />
 

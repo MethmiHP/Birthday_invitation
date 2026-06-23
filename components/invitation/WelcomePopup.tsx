@@ -76,7 +76,7 @@ export default function WelcomePopup() {
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                onClick={() => setIsOpen(false)}
+                                onClick={() => { setIsOpen(false); window.dispatchEvent(new CustomEvent('celebration-entered')); }}
                                 className="group relative px-10 py-4 bg-gradient-to-r from-pink-600 to-purple-600 rounded-full font-bold text-white shadow-[0_0_30px_rgba(236,72,153,0.5)] overflow-hidden"
                             >
                                 <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
