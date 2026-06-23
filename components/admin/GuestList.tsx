@@ -97,72 +97,75 @@ export default function GuestList({ guests, onRefresh }: GuestListProps) {
 
             {/* Desktop Table View */}
             <div className="hidden md:block bg-white/5 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
-                <table className="w-full text-left border-collapse">
-                    <thead>
-                        <tr className="bg-white/10 text-white/50 text-sm uppercase tracking-wider">
-                            <th className="px-6 py-4 font-semibold">Guest</th>
-                            <th className="px-6 py-4 font-semibold">Status</th>
-                            <th className="px-6 py-4 font-semibold">Guests</th>
-                            <th className="px-6 py-4 font-semibold">Message</th>
-                            <th className="px-6 py-4 font-semibold text-right">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y divide-white/10 text-white">
-                        {filteredGuests.length === 0 ? (
-                            <tr>
-                                <td colSpan={5} className="px-6 py-12 text-center text-white/30 italic">No guests found</td>
+                <div className="overflow-y-auto max-h-[480px] scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
+                    <table className="w-full text-left border-collapse">
+                        <thead className="sticky top-0 z-10">
+                            <tr className="bg-[#1a1a2e] text-white/50 text-sm uppercase tracking-wider border-b border-white/10">
+                                <th className="px-6 py-4 font-semibold">Guest</th>
+                                <th className="px-6 py-4 font-semibold">Status</th>
+                                <th className="px-6 py-4 font-semibold">Guests</th>
+                                <th className="px-6 py-4 font-semibold">Message</th>
+                                <th className="px-6 py-4 font-semibold text-right">Actions</th>
                             </tr>
-                        ) : (
-                            filteredGuests.map((guest) => (
-                                <tr key={guest.id} className="hover:bg-white/5 transition-colors group">
-                                    <td className="px-6 py-4">
-                                        <div className="font-bold">{guest.full_name}</div>
-                                        {guest.phone && (
-                                            <div className="text-xs text-white/40 flex items-center gap-1 mt-1">
-                                                <Phone size={10} /> {guest.phone}
-                                            </div>
-                                        )}
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest ${guest.attendance_status === 'attending'
-                                            ? 'bg-green-500/20 text-green-400 border border-green-500/30'
-                                            : 'bg-red-500/20 text-red-400 border border-red-500/30'
-                                            }`}>
-                                            {guest.attendance_status}
-                                        </span>
-                                    </td>
-                                    <td className="px-6 py-4 font-mono text-pink-400">{guest.guest_count}</td>
-                                    <td className="px-6 py-4 max-w-xs truncate text-white/60">
-                                        {guest.message ? (
-                                            <div className="flex items-start gap-2" title={guest.message}>
-                                                <MessageSquare size={14} className="mt-1 shrink-0 opacity-40" />
-                                                <span className="italic">{guest.message}</span>
-                                            </div>
-                                        ) : '-'}
-                                    </td>
-                                    <td className="px-6 py-4 text-right">
-                                        <button
-                                            onClick={() => handleDelete(guest.id)}
-                                            className="p-2 text-white/20 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all"
-                                        >
-                                            <Trash2 size={18} />
-                                        </button>
-                                    </td>
+                        </thead>
+                        <tbody className="divide-y divide-white/10 text-white">
+                            {filteredGuests.length === 0 ? (
+                                <tr>
+                                    <td colSpan={5} className="px-6 py-12 text-center text-white/30 italic">No guests found</td>
                                 </tr>
-                            ))
-                        )}
-                    </tbody>
-                </table>
+                            ) : (
+                                filteredGuests.map((guest) => (
+                                    <tr key={guest.id} className="hover:bg-white/5 transition-colors group">
+                                        <td className="px-6 py-4">
+                                            <div className="font-bold">{guest.full_name}</div>
+                                            {guest.phone && (
+                                                <div className="text-xs text-white/40 flex items-center gap-1 mt-1">
+                                                    <Phone size={10} /> {guest.phone}
+                                                </div>
+                                            )}
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest ${guest.attendance_status === 'attending'
+                                                ? 'bg-green-500/20 text-green-400 border border-green-500/30'
+                                                : 'bg-red-500/20 text-red-400 border border-red-500/30'
+                                                }`}>
+                                                {guest.attendance_status}
+                                            </span>
+                                        </td>
+                                        <td className="px-6 py-4 font-mono text-pink-400">{guest.guest_count}</td>
+                                        <td className="px-6 py-4 max-w-xs truncate text-white/60">
+                                            {guest.message ? (
+                                                <div className="flex items-start gap-2" title={guest.message}>
+                                                    <MessageSquare size={14} className="mt-1 shrink-0 opacity-40" />
+                                                    <span className="italic">{guest.message}</span>
+                                                </div>
+                                            ) : '-'}
+                                        </td>
+                                        <td className="px-6 py-4 text-right">
+                                            <button
+                                                onClick={() => handleDelete(guest.id)}
+                                                className="p-2 text-white/20 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all"
+                                            >
+                                                <Trash2 size={18} />
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))
+                            )}
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             {/* Mobile Cards View */}
-            <div className="block md:hidden space-y-4">
+            <div className="block md:hidden">
                 {filteredGuests.length === 0 ? (
                     <div className="bg-white/5 border border-white/10 rounded-2xl p-8 text-center text-white/30 italic">
                         No guests found
                     </div>
                 ) : (
-                    filteredGuests.map((guest) => (
+                    <div className="space-y-4 overflow-y-auto max-h-[520px] pr-1">
+                    {filteredGuests.map((guest) => (
                         <div key={guest.id} className="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-4 shadow-xl relative overflow-hidden">
                             {/* Attendance Status Indicator */}
                             <div className={`absolute top-0 left-0 w-1 h-full ${
@@ -217,7 +220,8 @@ export default function GuestList({ guests, onRefresh }: GuestListProps) {
                                 </div>
                             )}
                         </div>
-                    ))
+                    ))}
+                    </div>
                 )}
             </div>
         </div>
