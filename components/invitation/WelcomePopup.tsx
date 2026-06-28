@@ -52,6 +52,13 @@ export default function WelcomePopup() {
                         className="relative w-full max-w-[450px] aspect-[3/2] flex items-center justify-center z-10"
                         style={{ perspective: '1200px' }}
                     >
+                        {/* Gold Glow Backdrop */}
+                        <motion.div 
+                            animate={{ opacity: [0.4, 0.7, 0.4], scale: [0.95, 1.03, 0.95] }}
+                            transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+                            className="absolute inset-4 bg-[#dfc88a]/35 rounded-2xl blur-3xl pointer-events-none"
+                        />
+
                         {/* 1. Envelope Back Panel */}
                         <div className="absolute inset-0 bg-[#f4ebd0] border border-[#b38954]/25 rounded-2xl shadow-lg z-0" />
 
