@@ -79,8 +79,11 @@ export default function RSVPForm() {
             <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="bg-white/95 backdrop-blur-lg p-10 rounded-[2.5rem] border-2 border-[#b38954]/20 text-center text-[#2c2724] shadow-[0_15px_40px_rgba(179,137,84,0.12)] max-w-lg mx-auto font-serif"
+                className="bg-white/95 backdrop-blur-lg p-10 rounded-[2.5rem] border-2 border-[#b38954]/20 text-center text-[#2c2724] shadow-[0_15px_40px_rgba(179,137,84,0.12)] max-w-lg mx-auto font-serif relative"
             >
+                {/* Inner Gold Frame Border */}
+                <div className="absolute inset-3 border-4 border-double border-[#b38954]/30 rounded-[1.8rem] pointer-events-none z-10" />
+
                 <div className="flex justify-center mb-4 text-[#7a947e]">
                     <CheckCircle2 size={64} />
                 </div>
@@ -101,8 +104,11 @@ export default function RSVPForm() {
             onSubmit={handleSubmit}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="bg-white/95 backdrop-blur-lg p-10 rounded-[2.5rem] border-2 border-[#b38954]/20 space-y-6 text-[#2c2724] max-w-lg mx-auto shadow-[0_15px_40px_rgba(179,137,84,0.12)] font-serif"
+            className="bg-white/95 backdrop-blur-lg p-10 rounded-[2.5rem] border-2 border-[#b38954]/20 space-y-6 text-[#2c2724] max-w-lg mx-auto shadow-[0_15px_40px_rgba(179,137,84,0.12)] font-serif relative"
         >
+            {/* Inner Gold Frame Border */}
+            <div className="absolute inset-3 border-4 border-double border-[#b38954]/30 rounded-[1.8rem] pointer-events-none z-10" />
+
             <div className="space-y-4">
                 <div>
                     <label className="block text-sm font-bold mb-1.5 text-[#2c2724] tracking-wide">Full Name</label>
