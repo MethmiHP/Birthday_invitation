@@ -95,43 +95,69 @@ export default function WelcomePopup() {
                                     : { y: 0, scale: 0.92, zIndex: 5 }
                             }
                             transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: state === 'open' ? 0.05 : 0 }}
-                            className="absolute w-[92%] h-[122%] bg-white border border-[#b38954]/30 rounded-3xl overflow-hidden shadow-2xl p-6 flex flex-col items-center justify-between text-center"
+                            className="absolute w-[92%] h-[122%] bg-gradient-to-br from-white via-[#fdfbf7] to-[#faf5eb] border border-[#b38954]/35 rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(179,137,84,0.25)] p-8 flex flex-col items-center justify-between text-center"
                         >
-                            {/* Elegant Circular Cameo Portrait */}
-                            <div className="relative w-36 h-36 rounded-full border-4 border-[#b38954]/35 overflow-hidden shadow-inner bg-[#faf5eb] flex items-center justify-center mt-2">
-                                <Image
-                                    src="/images/birthday-girl.png"
-                                    alt="Birthday Girl"
-                                    fill
-                                    className="object-cover object-[center_22%]"
-                                    sizes="144px"
-                                    priority
-                                />
-                                <motion.div
-                                    animate={{ scale: [1, 1.15, 1] }}
-                                    transition={{ repeat: Infinity, duration: 2 }}
-                                    className="absolute -top-1 -right-1 p-2 bg-[#c77382] rounded-full text-white shadow-md z-10"
-                                >
-                                    <Heart fill="currentColor" size={12} />
-                                </motion.div>
+                            {/* Luxury Double Gold Inner Border */}
+                            <div className="absolute inset-3.5 border-4 border-double border-[#b38954]/25 rounded-[2rem] pointer-events-none z-10" />
+
+                            {/* Decorative Sparkle at top */}
+                            <div className="flex flex-col items-center mt-1 z-20">
+                                <Sparkles className="text-[#b38954]/70 mb-2 animate-pulse" size={16} />
+                                
+                                {/* Elegant Circular Cameo Portrait */}
+                                <div className="relative w-36 h-36 rounded-full border-4 border-[#b38954]/55 overflow-hidden shadow-xl bg-[#faf5eb] flex items-center justify-center">
+                                    <Image
+                                        src="/images/birthday-girl.png"
+                                        alt="Birthday Girl"
+                                        fill
+                                        className="object-cover object-[center_22%]"
+                                        sizes="144px"
+                                        priority
+                                    />
+                                    <motion.div
+                                        animate={{ scale: [1, 1.15, 1] }}
+                                        transition={{ repeat: Infinity, duration: 2 }}
+                                        className="absolute -top-1 -right-1 p-2 bg-[#c77382] rounded-full text-white shadow-md z-10"
+                                    >
+                                        <Heart fill="currentColor" size={12} />
+                                    </motion.div>
+                                </div>
                             </div>
 
-                            <div className="flex-1 flex flex-col items-center justify-center mt-2 space-y-2">
+                            <div className="flex-1 flex flex-col items-center justify-center mt-3 z-20">
                                 <h2 className="text-3xl font-black text-[#2c2724] tracking-wide leading-none font-serif">
                                     You're Invited!
                                 </h2>
-                                <p className="text-[#2c2724]/75 text-sm font-sans max-w-[280px] leading-relaxed">
+                                
+                                {/* Classy gold divider line */}
+                                <div className="flex items-center gap-3 justify-center my-2.5 w-full">
+                                    <div className="w-12 h-[1px] bg-gradient-to-r from-transparent to-[#b38954]/50" />
+                                    <span className="text-[#b38954]/80 text-[10px]">✦</span>
+                                    <div className="w-12 h-[1px] bg-gradient-to-l from-transparent to-[#b38954]/50" />
+                                </div>
+
+                                <p className="text-[#2c2724]/75 text-sm font-sans max-w-[260px] leading-relaxed">
                                     Join us for a magical evening of celebration, laughter, and lifelong memories.
                                 </p>
                             </div>
 
                             <motion.button
-                                whileHover={{ scale: 1.03 }}
-                                whileTap={{ scale: 0.97 }}
+                                whileHover={{ scale: 1.04, boxShadow: '0 8px 25px rgba(199, 115, 130, 0.35)' }}
+                                whileTap={{ scale: 0.96 }}
                                 onClick={handleEnter}
-                                className="w-[85%] py-3.5 bg-gradient-to-r from-[#df8f9f] to-[#c77382] hover:from-[#c77382] hover:to-[#7a3547] rounded-full font-bold text-white shadow-md shadow-[#c77382]/20 font-sans tracking-widest text-xs uppercase transition-all duration-300"
+                                className="w-[85%] py-3.5 bg-gradient-to-r from-[#df8f9f] via-[#c77382] to-[#7a3547] text-white font-bold rounded-full shadow-[0_4px_15px_rgba(199,115,130,0.25)] font-sans tracking-widest text-xs uppercase relative overflow-hidden z-20 mb-1 border border-white/10"
                             >
-                                Enter Celebration
+                                {/* Shimmer Sweep effect */}
+                                <motion.span
+                                    className="absolute inset-0 pointer-events-none bg-gradient-to-r from-transparent via-white/25 to-transparent"
+                                    animate={{ x: ['-100%', '200%'] }}
+                                    transition={{ duration: 2.5, repeat: Infinity, ease: 'linear', repeatDelay: 1.2 }}
+                                />
+                                <span className="relative flex items-center justify-center gap-2">
+                                    <Sparkles size={14} className="text-[#dfc88a]" />
+                                    Enter Celebration
+                                    <Sparkles size={14} className="text-[#dfc88a]" />
+                                </span>
                             </motion.button>
                         </motion.div>
 
