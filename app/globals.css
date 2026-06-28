@@ -8,36 +8,36 @@
    Design Tokens
 ───────────────────────────────────────────────────────── */
 :root {
-  /* Background palette — deep blush-black */
-  --bg-base: #0d0608;
-  --bg-mid: #130a0c;
-  --bg-surface: #1c1014;
+  /* Background palette — warm ivory/parchment */
+  --bg-base: #faf5eb;
+  --bg-mid: #f5eedf;
+  --bg-surface: #ffffff;
 
   /* Gold / champagne */
-  --gold-light: #f0d98a;
-  --gold-mid: #c49c6b;
-  --gold-dark: #8a6b42;
-  --gold-gradient: linear-gradient(135deg, #f0d98a 0%, #c49c6b 50%, #8a6b42 100%);
+  --gold-light: #dfc88a;
+  --gold-mid: #b38954;
+  --gold-dark: #6e502c;
+  --gold-gradient: linear-gradient(135deg, #b38954 0%, #8a6433 100%);
 
   /* Rose / blush */
-  --rose-soft: #f2c4ce;
-  --rose-mid: #d4788f;
-  --rose-deep: #8b3a52;
-  --rose-gradient: linear-gradient(135deg, #f2c4ce 0%, #d4788f 60%, #8b3a52 100%);
+  --rose-soft: #f5d3da;
+  --rose-mid: #c77382;
+  --rose-deep: #7a3547;
+  --rose-gradient: linear-gradient(135deg, #df8f9f 0%, #c77382 60%, #7a3547 100%);
 
-  /* Pearl / cream */
-  --pearl: #f5e6d3;
-  --pearl-dim: rgba(245, 230, 211, 0.6);
-  --pearl-ghost: rgba(245, 230, 211, 0.12);
+  /* Pearl / cream (dark color for text in light theme) */
+  --pearl: #2c2724;
+  --pearl-dim: rgba(44, 39, 36, 0.7);
+  --pearl-ghost: rgba(44, 39, 36, 0.08);
 
   /* Text */
-  --text-primary: #f5e6d3;
-  --text-secondary: rgba(245, 230, 211, 0.55);
-  --text-muted: rgba(245, 230, 211, 0.3);
+  --text-primary: #2c2724;
+  --text-secondary: rgba(44, 39, 36, 0.7);
+  --text-muted: rgba(44, 39, 36, 0.45);
 
   /* Borders */
-  --border-gold: rgba(196, 156, 107, 0.25);
-  --border-rose: rgba(212, 120, 143, 0.2);
+  --border-gold: rgba(179, 137, 84, 0.35);
+  --border-rose: rgba(199, 115, 130, 0.25);
 }
 
 /* ─────────────────────────────────────────────────────────
@@ -56,7 +56,12 @@ html {
 body {
   margin: 0;
   color: var(--text-primary);
-  background: var(--bg-base);
+  background-color: var(--bg-base);
+  background-image: url('/images/floral-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   font-family: 'Didact Gothic', sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -440,11 +445,12 @@ h5,
    Shared Glass Card utility
 ───────────────────────────────────────────────────────── */
 .glass-card {
-  background: rgba(28, 16, 20, 0.7);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border-gold);
-  border-radius: 2px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(179, 137, 84, 0.08);
 }
 
 /* Layered gold border accent */
@@ -494,14 +500,15 @@ h5,
   font-size: 0.72rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--bg-base);
-  background: var(--gold-gradient);
+  color: #ffffff;
+  background: var(--rose-gradient);
   border: none;
-  border-radius: 1px;
+  border-radius: 30px;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(199, 115, 130, 0.3);
 }
 
 .btn-luxury::after {
@@ -526,9 +533,9 @@ h5,
 ───────────────────────────────────────────────────────── */
 .input-luxury {
   width: 100%;
-  background: rgba(245, 230, 211, 0.04);
+  background: rgba(255, 255, 255, 0.85);
   border: 1px solid var(--border-gold);
-  border-radius: 1px;
+  border-radius: 8px;
   padding: 0.85rem 1.1rem;
   font-family: 'Didact Gothic', sans-serif;
   font-size: 0.88rem;
@@ -546,7 +553,7 @@ h5,
 
 .input-luxury:focus {
   border-color: var(--gold-mid);
-  background: rgba(245, 230, 211, 0.07);
+  background: #ffffff;
 }
 
 /* ─────────────────────────────────────────────────────────
@@ -554,7 +561,7 @@ h5,
 ───────────────────────────────────────────────────────── */
 @layer utilities {
   .glass {
-    background: rgba(28, 16, 20, 0.65);
+    background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--border-gold);

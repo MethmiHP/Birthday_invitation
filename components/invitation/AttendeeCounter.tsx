@@ -49,10 +49,10 @@ export default function AttendeeCounter() {
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="flex items-center gap-2 bg-pink-500/20 backdrop-blur-sm border border-pink-500/30 px-4 py-2 rounded-full text-pink-200"
+            className="flex items-center gap-2 bg-[#df8f9f]/10 backdrop-blur-sm border border-[#df8f9f]/30 px-4 py-2 rounded-full text-[#c77382] font-sans text-sm shadow-sm"
         >
-            <Users size={18} className="animate-pulse" />
-            <span className="font-semibold">
+            <Users size={18} className="text-[#c77382]" />
+            <span className="font-bold">
                 <AnimatePresence mode="wait">
                     <motion.span
                         key={count}

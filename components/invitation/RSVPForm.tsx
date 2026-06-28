@@ -79,16 +79,16 @@ export default function RSVPForm() {
             <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="bg-white/10 backdrop-blur-lg p-8 rounded-3xl border border-white/20 text-center text-white"
+                className="bg-white/95 backdrop-blur-lg p-10 rounded-[2.5rem] border-2 border-[#b38954]/20 text-center text-[#2c2724] shadow-[0_15px_40px_rgba(179,137,84,0.12)] max-w-lg mx-auto font-serif"
             >
-                <div className="flex justify-center mb-4 text-green-400">
+                <div className="flex justify-center mb-4 text-[#7a947e]">
                     <CheckCircle2 size={64} />
                 </div>
                 <h3 className="text-2xl font-bold mb-2">RSVP Received!</h3>
-                <p className="text-white/70">Thank you for letting us know. We have updated the guest list.</p>
+                <p className="text-[#2c2724]/75 font-sans">Thank you for letting us know. We have updated the guest list.</p>
                 <button
                     onClick={() => setSubmitted(false)}
-                    className="mt-6 text-sm underline opacity-50 hover:opacity-100"
+                    className="mt-6 text-sm underline text-[#c77382] opacity-70 hover:opacity-100 font-sans font-bold"
                 >
                     Submit another response
                 </button>
@@ -101,15 +101,15 @@ export default function RSVPForm() {
             onSubmit={handleSubmit}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="bg-white/10 backdrop-blur-lg p-8 rounded-3xl border border-white/20 space-y-6 text-white max-w-lg mx-auto"
+            className="bg-white/95 backdrop-blur-lg p-10 rounded-[2.5rem] border-2 border-[#b38954]/20 space-y-6 text-[#2c2724] max-w-lg mx-auto shadow-[0_15px_40px_rgba(179,137,84,0.12)] font-serif"
         >
             <div className="space-y-4">
                 <div>
-                    <label className="block text-sm font-medium mb-1 opacity-70">Full Name</label>
+                    <label className="block text-sm font-bold mb-1.5 text-[#2c2724] tracking-wide">Full Name</label>
                     <input
                         required
                         type="text"
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-500/50 transition-all"
+                        className="w-full bg-[#faf5eb] border border-[#b38954]/30 rounded-xl px-4 py-3 text-[#2c2724] placeholder-[#2c2724]/40 focus:outline-none focus:ring-2 focus:ring-[#c77382]/40 focus:border-[#c77382]/60 transition-all font-sans"
                         placeholder="Enter your name"
                         value={formData.full_name}
                         onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
@@ -118,24 +118,24 @@ export default function RSVPForm() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label className="block text-sm font-medium mb-1 opacity-70">Phone Number</label>
+                        <label className="block text-sm font-bold mb-1.5 text-[#2c2724] tracking-wide">Phone Number</label>
                         <input
                             required
                             type="tel"
-                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-500/50 transition-all"
+                            className="w-full bg-[#faf5eb] border border-[#b38954]/30 rounded-xl px-4 py-3 text-[#2c2724] placeholder-[#2c2724]/40 focus:outline-none focus:ring-2 focus:ring-[#c77382]/40 focus:border-[#c77382]/60 transition-all font-sans"
                             placeholder="Your phone"
                             value={formData.phone}
                             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium mb-1 opacity-70">Number of Guests</label>
+                        <label className="block text-sm font-bold mb-1.5 text-[#2c2724] tracking-wide">Number of Guests</label>
                         <input
                             required
                             type="number"
                             min="1"
                             max="10"
-                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-500/50 transition-all"
+                            className="w-full bg-[#faf5eb] border border-[#b38954]/30 rounded-xl px-4 py-3 text-[#2c2724] placeholder-[#2c2724]/40 focus:outline-none focus:ring-2 focus:ring-[#c77382]/40 focus:border-[#c77382]/60 transition-all font-sans"
                             value={formData.guest_count || ''}
                             onFocus={(e) => e.target.select()}
                             onChange={(e) => {
@@ -147,16 +147,16 @@ export default function RSVPForm() {
                 </div>
 
                 <div>
-                    <label className="block text-sm font-medium mb-1 opacity-70">Attendance</label>
-                    <div className="grid grid-cols-2 gap-3">
+                    <label className="block text-sm font-bold mb-1.5 text-[#2c2724] tracking-wide">Attendance</label>
+                    <div className="grid grid-cols-2 gap-3 font-sans">
                         {['attending', 'declined'].map((status) => (
                             <button
                                 key={status}
                                 type="button"
                                 onClick={() => setFormData({ ...formData, attendance_status: status as any })}
-                                className={`py-3 rounded-xl border transition-all capitalize ${formData.attendance_status === status
-                                    ? 'bg-pink-600 border-pink-500 shadow-lg shadow-pink-500/30'
-                                    : 'bg-white/5 border-white/10 opacity-70 hover:opacity-100 hover:bg-white/10'
+                                className={`py-3 rounded-xl border transition-all capitalize font-bold ${formData.attendance_status === status
+                                    ? 'bg-[#c77382] border-[#c77382] text-white shadow-md shadow-[#c77382]/20'
+                                    : 'bg-[#faf5eb] border-[#b38954]/20 text-[#2c2724]/70 hover:bg-[#faf5eb]/80'
                                     }`}
                             >
                                 {status}
@@ -166,10 +166,10 @@ export default function RSVPForm() {
                 </div>
 
                 <div>
-                    <label className="block text-sm font-medium mb-1 opacity-70">Birthday Wish (Optional)</label>
+                    <label className="block text-sm font-bold mb-1.5 text-[#2c2724] tracking-wide">Birthday Wish (Optional)</label>
                     <textarea
                         rows={3}
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-500/50 transition-all"
+                        className="w-full bg-[#faf5eb] border border-[#b38954]/30 rounded-xl px-4 py-3 text-[#2c2724] placeholder-[#2c2724]/40 focus:outline-none focus:ring-2 focus:ring-[#c77382]/40 focus:border-[#c77382]/60 transition-all font-sans"
                         placeholder="Write a message..."
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -180,14 +180,14 @@ export default function RSVPForm() {
             <button
                 disabled={loading}
                 type="submit"
-                className="w-full bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-500 hover:to-purple-500 text-white font-bold py-4 rounded-xl shadow-xl transition-all flex items-center justify-center gap-2"
+                className="w-full bg-gradient-to-r from-[#df8f9f] to-[#c77382] hover:from-[#c77382] hover:to-[#7a3547] text-white font-bold py-4 rounded-xl shadow-md shadow-[#c77382]/10 hover:shadow-[#c77382]/20 transition-all flex items-center justify-center gap-2 font-sans tracking-widest text-sm"
             >
                 {loading ? (
                     <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
                 ) : (
                     <>
                         <Send size={20} />
-                        Submit RSVP
+                        SUBMIT RSVP
                     </>
                 )}
             </button>

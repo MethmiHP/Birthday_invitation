@@ -49,7 +49,7 @@ export default function EventDetails({ date, venue, mapUrl }: EventDetailsProps)
     };
 
     return (
-        <section className="py-20 px-4 bg-white/5 rounded-[3rem] mx-4 border border-white/10 mb-20">
+        <section className="py-20 px-6 bg-white/80 rounded-[3rem] mx-4 border border-[#b38954]/20 mb-20 shadow-[0_10px_35px_rgba(179,137,84,0.08)] relative z-10 font-serif">
             <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
                 <div className="space-y-8">
                     <motion.div
@@ -57,12 +57,12 @@ export default function EventDetails({ date, venue, mapUrl }: EventDetailsProps)
                         whileInView={{ opacity: 1, x: 0 }}
                         className="flex items-start gap-4"
                     >
-                        <div className="p-4 bg-pink-500/20 rounded-2xl text-pink-400">
+                        <div className="p-4 bg-[#df8f9f]/10 rounded-2xl text-[#c77382]">
                             <Calendar size={28} />
                         </div>
                         <div>
-                            <h4 className="text-white font-bold text-xl">When</h4>
-                            <p className="text-white/60">{eventDate}</p>
+                            <h4 className="text-[#2c2724] font-bold text-xl">When</h4>
+                            <p className="text-[#2c2724]/75 font-sans">{eventDate}</p>
                         </div>
                     </motion.div>
 
@@ -72,12 +72,12 @@ export default function EventDetails({ date, venue, mapUrl }: EventDetailsProps)
                         transition={{ delay: 0.1 }}
                         className="flex items-start gap-4"
                     >
-                        <div className="p-4 bg-purple-500/20 rounded-2xl text-purple-400">
+                        <div className="p-4 bg-[#b38954]/10 rounded-2xl text-[#b38954]">
                             <Clock size={28} />
                         </div>
                         <div>
-                            <h4 className="text-white font-bold text-xl">Time</h4>
-                            <p className="text-white/60">{eventTime} Onwards</p>
+                            <h4 className="text-[#2c2724] font-bold text-xl">Time</h4>
+                            <p className="text-[#2c2724]/75 font-sans">{eventTime} Onwards</p>
                         </div>
                     </motion.div>
 
@@ -87,32 +87,32 @@ export default function EventDetails({ date, venue, mapUrl }: EventDetailsProps)
                         transition={{ delay: 0.2 }}
                         className="flex items-start gap-4"
                     >
-                        <div className="p-4 bg-blue-500/20 rounded-2xl text-blue-400">
+                        <div className="p-4 bg-[#8ba88f]/10 rounded-2xl text-[#7a947e]">
                             <MapPin size={28} />
                         </div>
                         <div>
-                            <h4 className="text-white font-bold text-xl">Where</h4>
-                            <p className="text-white/60">{venue}</p>
+                            <h4 className="text-[#2c2724] font-bold text-xl">Where</h4>
+                            <p className="text-[#2c2724]/75 font-sans">{venue}</p>
                         </div>
                     </motion.div>
 
                     <motion.div
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
-                        className="pt-6 flex gap-4 flex-wrap"
+                        className="pt-6 flex gap-4 flex-wrap font-sans"
                     >
                         <button
                             onClick={handleShare}
-                            className="flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/10 rounded-xl text-white transition-all"
+                            className="flex items-center gap-2 px-6 py-3 bg-white/80 hover:bg-[#faf5eb] border border-[#b38954]/20 rounded-xl text-[#2c2724] transition-all shadow-sm hover:border-[#b38954]/40"
                         >
-                            <Share2 size={18} />
+                            <Share2 size={18} className="text-[#c77382]" />
                             Share Invitation
                         </button>
                         <a
                             href={`https://wa.me/?text=${encodeURIComponent("Join us for my birthday celebration! " + (mounted ? window.location.href : ''))}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-2 px-6 py-3 bg-green-500/20 hover:bg-green-500/30 border border-green-500/10 rounded-xl text-green-400 transition-all font-medium"
+                            className="flex items-center gap-2 px-6 py-3 bg-[#8ba88f]/10 hover:bg-[#8ba88f]/20 border border-[#8ba88f]/20 rounded-xl text-[#7a947e] transition-all font-medium shadow-sm"
                         >
                             Share on WhatsApp
                         </a>
@@ -124,8 +124,8 @@ export default function EventDetails({ date, venue, mapUrl }: EventDetailsProps)
                     whileInView={{ opacity: 1, scale: 1 }}
                     className="relative group"
                 >
-                    <div className="absolute inset-0 bg-gradient-to-tr from-pink-500 to-purple-500 rounded-3xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
-                    <div className="relative overflow-hidden rounded-3xl border border-white/20 h-[400px] w-full bg-white/5 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-[#b38954] to-[#df8f9f] rounded-3xl blur-2xl opacity-10 group-hover:opacity-25 transition-opacity duration-500" />
+                    <div className="relative overflow-hidden rounded-3xl border border-[#b38954]/20 h-[400px] w-full bg-white/50 backdrop-blur-sm flex items-center justify-center shadow-md">
                         {mapUrl && mapUrl.startsWith('http') ? (
                             <iframe
                                 src={mapUrl}
@@ -138,16 +138,16 @@ export default function EventDetails({ date, venue, mapUrl }: EventDetailsProps)
                             ></iframe>
                         ) : (
                             <div className="text-center p-8">
-                                <MapPin size={48} className="mx-auto mb-4 text-white/20" />
-                                <p className="text-white/40 font-medium">Venue Map will appear here</p>
-                                <p className="text-white/20 text-xs mt-2">Add a Google Maps Embed URL in Settings</p>
+                                <MapPin size={48} className="mx-auto mb-4 text-[#2c2724]/20" />
+                                <p className="text-[#2c2724]/40 font-medium">Venue Map will appear here</p>
+                                <p className="text-[#2c2724]/20 text-xs mt-2">Add a Google Maps Embed URL in Settings</p>
                             </div>
                         )}
                     </div>
 
-                    <div className="absolute -bottom-6 -right-6 p-4 bg-white rounded-2xl shadow-2xl hidden md:block">
+                    <div className="absolute -bottom-6 -right-6 p-4 bg-white rounded-2xl border-2 border-[#b38954]/30 shadow-2xl hidden md:block">
                         {mounted && <QRCodeSVG value={window.location.href} size={100} />}
-                        <p className="text-[10px] text-center mt-2 font-bold text-gray-400">SCAN TO VIEW</p>
+                        <p className="text-[10px] text-center mt-2 font-bold text-[#b38954]">SCAN TO VIEW</p>
                     </div>
                 </motion.div>
             </div>

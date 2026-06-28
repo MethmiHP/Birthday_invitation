@@ -29,7 +29,7 @@ export default function MusicToggle() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={toggleMusic}
-            className="fixed bottom-6 right-6 z-50 p-4 bg-white/20 backdrop-blur-md border border-white/30 rounded-full shadow-xl text-white hover:bg-white/30 transition-all"
+            className="fixed bottom-6 right-6 z-50 p-4 bg-white/80 backdrop-blur-md border border-[#b38954]/30 rounded-full shadow-lg text-[#c77382] hover:bg-[#faf5eb] transition-all hover:scale-110 duration-300"
             title={isPlaying ? "Pause Music" : "Play Music"}
         >
             {isPlaying ? <Volume2 size={24} /> : <VolumeX size={24} />}

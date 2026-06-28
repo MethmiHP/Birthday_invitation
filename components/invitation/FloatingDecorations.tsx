@@ -4,14 +4,12 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 const DECORATIONS = [
-    { type: 'balloon', emoji: '🎈', color: 'text-pink-500' },
-    { type: 'balloon', emoji: '🎈', color: 'text-purple-500' },
-    { type: 'sparkle', emoji: '✨', color: 'text-yellow-200' },
-    { type: 'flower', emoji: '🌸', color: 'text-pink-300' },
-    { type: 'flower', emoji: '🎀', color: 'text-rose-400' },
-    { type: 'flower', emoji: '🎊', color: 'text-purple-400' },
-    { type: 'flower', emoji: '🍰', color: 'text-pink-200' },
-    { type: 'flower', emoji: '🥂', color: 'text-yellow-100' },
+    { type: 'leaf', emoji: '🍃', color: 'text-[#8ba88f]' },
+    { type: 'leaf', emoji: '🌿', color: 'text-[#7a947e]' },
+    { type: 'petal', emoji: '🌸', color: 'text-[#df8f9f]' },
+    { type: 'petal', emoji: '🌹', color: 'text-[#c77382]' },
+    { type: 'sparkle', emoji: '✨', color: 'text-[#dfc88a]' },
+    { type: 'petal', emoji: '🌺', color: 'text-[#c77382]' },
 ];
 
 export default function FloatingDecorations() {
@@ -29,9 +27,9 @@ export default function FloatingDecorations() {
                 sideValue: `${Math.random() * 8}%`, // Keep them tighter to the edges
                 initialY: `${Math.random() * 120 - 20}vh`,
                 delay: Math.random() * -40,
-                duration: 35 + Math.random() * 25, // Much slower, gentle drift
-                size: 15 + Math.random() * 25, // Slightly smaller
-                xOffset: (Math.random() - 0.5) * 60, // Minimal sway
+                duration: 40 + Math.random() * 30, // Even slower, gentle drift
+                size: 15 + Math.random() * 20, // Slightly smaller and subtle
+                xOffset: (Math.random() - 0.5) * 50, // Minimal sway
             };
         });
         setElements(newElements);
@@ -46,7 +44,7 @@ export default function FloatingDecorations() {
                     animate={{
                         y: ['110vh', '-20vh'],
                         x: [el.xOffset * -1, el.xOffset],
-                        opacity: [0, 0.4, 0.4, 0],
+                        opacity: [0, 0.35, 0.35, 0],
                         rotate: [0, 45, -45, 0],
                     }}
                     transition={{
@@ -59,7 +57,7 @@ export default function FloatingDecorations() {
                         fontSize: el.size,
                         [el.positionSide]: el.sideValue // This dynamically sets left or right
                     }}
-                    className={`absolute ${el.color} filter drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]`}
+                    className={`absolute ${el.color} filter drop-shadow-[0_0_6px_rgba(179,137,84,0.15)]`}
                 >
                     {el.emoji}
                 </motion.div>

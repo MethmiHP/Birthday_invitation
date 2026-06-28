@@ -47,7 +47,7 @@ export default function Countdown({ targetDate }: { targetDate: string }) {
     ];
 
     return (
-        <div className="flex gap-4 md:gap-8 justify-center">
+        <div className="flex gap-4 md:gap-8 justify-center font-serif">
             {items.map((item, index) => (
                 <motion.div
                     key={item.label}
@@ -56,10 +56,10 @@ export default function Countdown({ targetDate }: { targetDate: string }) {
                     transition={{ delay: index * 0.1 }}
                     className="flex flex-col items-center"
                 >
-                    <div className="w-16 h-16 md:w-20 md:h-20 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl flex items-center justify-center text-2xl md:text-3xl font-bold text-white shadow-lg">
+                    <div className="w-16 h-16 md:w-20 md:h-20 bg-white/80 backdrop-blur-md border border-[#b38954]/30 rounded-2xl flex items-center justify-center text-2xl md:text-3xl font-bold text-[#2c2724] shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
                         {item.value}
                     </div>
-                    <span className="text-white/60 text-xs md:text-sm mt-2 uppercase tracking-widest font-medium">
+                    <span className="text-[#2c2724]/70 text-xs md:text-sm mt-2 uppercase tracking-widest font-bold font-sans">
                         {item.label}
                     </span>
                 </motion.div>

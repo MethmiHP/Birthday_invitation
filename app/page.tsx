@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import Hero from '@/components/invitation/Hero';
 import Countdown from '@/components/invitation/Countdown';
@@ -16,55 +16,7 @@ import { Loader2 } from 'lucide-react';
 export default function Home() {
   const [settings, setSettings] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const fireworkContainerRef = useRef<HTMLDivElement | null>(null);
 
-  // One-time firework burst when "Enter Celebration" is clicked
-  useEffect(() => {
-    const handleEnter = async () => {
-      const { Fireworks } = await import('fireworks-js');
-
-      const container = document.createElement('div');
-      container.style.cssText =
-        'position:fixed;inset:0;pointer-events:none;z-index:50';
-      document.body.appendChild(container);
-
-      const fw = new Fireworks(container, {
-        autoresize: true,
-        opacity: 0.6,
-        acceleration: 1.05,
-        friction: 0.97,
-        gravity: 1.5,
-        particles: 80,
-        traceLength: 3,
-        traceSpeed: 10,
-        explosion: 8,
-        intensity: 20,
-        flickering: 50,
-        lineStyle: 'round',
-        hue: { min: 0, max: 360 },
-        delay: { min: 15, max: 30 },
-        rocketsPoint: { min: 40, max: 60 },
-        lineWidth: {
-          explosion: { min: 1, max: 3 },
-          trace: { min: 1, max: 2 },
-        },
-        brightness: { min: 50, max: 90 },
-        decay: { min: 0.015, max: 0.03 },
-        mouse: { click: false, move: false, max: 1 },
-      });
-
-      fw.start();
-
-      // Stop after 2.5 s and clean up
-      setTimeout(() => {
-        fw.stop();
-        container.remove();
-      }, 2500);
-    };
-
-    window.addEventListener('celebration-entered', handleEnter, { once: true });
-    return () => window.removeEventListener('celebration-entered', handleEnter);
-  }, []);
 
   useEffect(() => {
     async function fetchSettings() {
@@ -92,19 +44,16 @@ export default function Home() {
   const age = settings?.target_age || 25;
 
   return (
-    <main className="min-h-screen bg-[#0a0a1a] text-white selection:bg-pink-500/30 selection:text-pink-200 overflow-x-hidden">
+    <main className="min-h-screen bg-transparent text-[#2c2724] selection:bg-rose-100 selection:text-rose-800 overflow-x-hidden relative font-serif">
       <Toaster position="top-center" />
       <WelcomePopup />
       <FloatingDecorations />
 
       {/* Background Glow */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,rgba(236,72,153,0.15),rgba(255,255,255,0))]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(139,92,246,0.1),rgba(255,255,255,0))]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_100%_100%,rgba(236,72,153,0.1),rgba(255,255,255,0))]" />
-        <div className="absolute inset-x-0 bottom-0 top-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:60px_60px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,rgba(179,137,84,0.06),rgba(255,255,255,0))]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_100%_100%,rgba(199,115,130,0.05),rgba(255,255,255,0))]" />
       </div>
-
 
       <MusicToggle />
 
@@ -112,7 +61,7 @@ export default function Home() {
 
       <section className="py-20 relative z-10">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h3 className="text-3xl md:text-5xl font-bold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-pink-200 to-purple-200">
+          <h3 className="text-3xl md:text-5xl font-bold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-[#b38954] to-[#7a3547] font-serif">
             Counting Down the Days
           </h3>
           <Countdown targetDate={birthdayDate} />
@@ -123,8 +72,8 @@ export default function Home() {
 
       <section id="rsvp" className="py-20 px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">Will You Join Us?</h2>
-          <p className="text-white/60 text-lg">Please RSVP by October 15th to help us with arrangements.</p>
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 text-[#2c2724] font-serif">Will You Join Us?</h2>
+          <p className="text-[#2c2724]/75 text-lg font-sans">Please RSVP by October 15th to help us with arrangements.</p>
         </div>
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex justify-center mb-12">
@@ -134,19 +83,19 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="py-20 text-center text-white/30 text-sm flex flex-col items-center justify-center gap-4">
+      <footer className="py-20 text-center text-[#2c2724]/60 text-sm flex flex-col items-center justify-center gap-4 relative z-10">
         <div>
           <p>&copy; 2026 {birthdayName}'s Birthday Bash. All rights reserved.</p>
-          <p className="mt-2 italic">Design with ❤️ for a special day.</p>
+          <p className="mt-2 italic text-[#2c2724]/40">Design with ❤️ for a special day.</p>
         </div>
 
-        <div className="flex items-center gap-2.5 text-xs text-white/40 mt-2 px-4 py-2 rounded-full border border-white/5 bg-white/5 backdrop-blur-sm">
+        <div className="flex items-center gap-2.5 text-xs text-[#2c2724]/60 mt-2 px-4 py-2 rounded-full border border-[#b38954]/20 bg-white/50 backdrop-blur-sm shadow-sm">
           <span>Created by</span>
           <a href="https://unovar.com" target="_blank" rel="noopener noreferrer" className="flex items-center hover:opacity-100 transition-opacity duration-300">
             <img 
               src="/images/logo.png" 
               alt="Unovar Logo" 
-              className="h-5 w-auto opacity-60 hover:opacity-100 transition-opacity duration-300"
+              className="h-5 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300"
             />
           </a>
         </div>
@@ -154,9 +103,9 @@ export default function Home() {
         <div className="mt-4">
           <a
             href="/login"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/5 hover:border-white/20 hover:bg-white/5 hover:text-white transition-all text-xs uppercase tracking-widest font-bold"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#b38954]/20 hover:border-[#b38954]/40 hover:bg-white/50 text-[#2c2724]/70 hover:text-[#2c2724] transition-all text-xs uppercase tracking-widest font-bold bg-white/30 backdrop-blur-sm shadow-sm"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-pink-500 animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#c77382] animate-pulse" />
             Admin Access
           </a>
         </div>
