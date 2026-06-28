@@ -97,13 +97,13 @@ export default function WelcomePopup() {
                             transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: state === 'open' ? 0.05 : 0 }}
                             className="absolute w-[92%] h-[122%] bg-white border border-[#b38954]/30 rounded-3xl overflow-hidden shadow-2xl p-6 flex flex-col items-center justify-between text-center"
                         >
-                            {/* Elegant Circular Cameo Portrait (Smaller to prevent cutoff) */}
+                            {/* Elegant Circular Cameo Portrait */}
                             <div className="relative w-36 h-36 rounded-full border-4 border-[#b38954]/35 overflow-hidden shadow-inner bg-[#faf5eb] flex items-center justify-center mt-2">
                                 <Image
                                     src="/images/birthday-girl.png"
                                     alt="Birthday Girl"
                                     fill
-                                    className="object-cover scale-[0.95] rounded-full"
+                                    className="object-cover object-[center_22%]"
                                     sizes="144px"
                                     priority
                                 />
