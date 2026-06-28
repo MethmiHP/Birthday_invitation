@@ -33,7 +33,7 @@ export default function FloatingDecorations() {
     }, []);
 
     return (
-        <div className="fixed inset-0 pointer-events-none overflow-hidden z-0 select-none">
+        <div className="hidden sm:block fixed inset-0 pointer-events-none overflow-hidden z-0 select-none">
             {elements.map((el) => (
                 <motion.div
                     key={el.id}
