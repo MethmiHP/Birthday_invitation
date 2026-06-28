@@ -12,11 +12,28 @@ import FloatingDecorations from '@/components/invitation/FloatingDecorations';
 import WelcomePopup from '@/components/invitation/WelcomePopup';
 import { Toaster } from 'react-hot-toast';
 import { Loader2 } from 'lucide-react';
+import confetti from 'canvas-confetti';
 
 export default function Home() {
   const [settings, setSettings] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    const handleEnter = () => {
+      // Trigger a beautiful, elegant sparkle confetti burst
+      confetti({
+        particleCount: 150,
+        spread: 80,
+        origin: { y: 0.6 },
+        colors: ['#dfc88a', '#c77382', '#faf5eb', '#df8f9f', '#b38954'],
+        shapes: ['star', 'circle'],
+        scalar: 1.2,
+      });
+    };
+
+    window.addEventListener('celebration-entered', handleEnter, { once: true });
+    return () => window.removeEventListener('celebration-entered', handleEnter);
+  }, []);
 
   useEffect(() => {
     async function fetchSettings() {
