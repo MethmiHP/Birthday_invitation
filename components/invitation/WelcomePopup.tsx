@@ -47,31 +47,31 @@ export default function WelcomePopup() {
                     />
 
                     {/* Drifting petals background */}
-                    <div className="absolute inset-0 pointer-events-none z-0">
-                        {[...Array(40)].map((_, i) => (
+                    <div className="absolute inset-0 pointer-events-none">
+                        {[...Array(15)].map((_, i) => (
                             <motion.div
                                 key={i}
                                 initial={{
                                     x: Math.random() * 100 + "%",
                                     y: "-10%",
                                     opacity: 0,
-                                    scale: 0.4 + Math.random() * 0.7
+                                    scale: 0.5 + Math.random() * 0.5
                                 }}
                                 animate={{
                                     y: "110vh",
-                                    x: [null, `${(Math.random() - 0.5) * 40}%`],
-                                    opacity: [0, 0.7, 0.7, 0],
+                                    x: [null, `${(Math.random() - 0.5) * 30}%`],
+                                    opacity: [0, 0.6, 0.6, 0],
                                     rotate: [0, 180, 360]
                                 }}
                                 transition={{
                                     duration: 10 + Math.random() * 10,
                                     repeat: Infinity,
-                                    delay: -Math.random() * 20, // Negative delay pre-populates the screen instantly
+                                    delay: Math.random() * 5,
                                     ease: "linear"
                                 }}
-                                className="absolute text-xl md:text-2xl"
+                                className="absolute text-xl"
                             >
-                                {['🌸', '🍃', '✨', '🌹', '🌺', '🌿'][i % 6]}
+                                {['🌸', '🍃', '✨', '🌹'][i % 4]}
                             </motion.div>
                         ))}
                     </div>
