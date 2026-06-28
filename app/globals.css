@@ -57,15 +57,37 @@ body {
   margin: 0;
   color: var(--text-primary);
   background-color: var(--bg-base);
-  background-image: url('/images/floral-bg.png');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
   font-family: 'Didact Gothic', sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   letter-spacing: 0.02em;
+}
+
+/* Hardware accelerated background layer for sharper rendering and quality filtering */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image: url('/images/floral-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  filter: contrast(1.04) saturate(1.05) brightness(1.01);
+  will-change: transform;
+  transform: translate3d(0, 0, 0); /* Force GPU bilinear interpolation for crisp rendering */
+  pointer-events: none;
+}
+
+/* Soft luxury parchment vignette overlay to smooth out pixelation & scaling artifacts */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(circle at 50% 50%, rgba(250, 245, 235, 0.15) 0%, rgba(245, 238, 223, 0.45) 100%);
+  pointer-events: none;
 }
 
 /* ── Serif headings ── */
