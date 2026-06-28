@@ -4,12 +4,14 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 const DECORATIONS = [
-    { type: 'leaf', emoji: '🍃', color: 'text-[#8ba88f]' },
-    { type: 'leaf', emoji: '🌿', color: 'text-[#7a947e]' },
-    { type: 'petal', emoji: '🌸', color: 'text-[#df8f9f]' },
-    { type: 'petal', emoji: '🌹', color: 'text-[#c77382]' },
-    { type: 'sparkle', emoji: '✨', color: 'text-[#dfc88a]' },
-    { type: 'petal', emoji: '🌺', color: 'text-[#c77382]' },
+    { type: 'balloon', emoji: '🎈', color: 'text-pink-500' },
+    { type: 'balloon', emoji: '🎈', color: 'text-purple-500' },
+    { type: 'sparkle', emoji: '✨', color: 'text-yellow-200' },
+    { type: 'flower', emoji: '🌸', color: 'text-pink-300' },
+    { type: 'flower', emoji: '🎀', color: 'text-rose-400' },
+    { type: 'flower', emoji: '🎊', color: 'text-purple-400' },
+    { type: 'flower', emoji: '🍰', color: 'text-pink-200' },
+    { type: 'flower', emoji: '🥂', color: 'text-yellow-100' },
 ];
 
 export default function FloatingDecorations() {
