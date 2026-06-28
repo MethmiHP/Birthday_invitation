@@ -78,13 +78,13 @@ export default function WelcomePopup() {
                             initial={{ y: 0, scale: 0.92, zIndex: 5 }}
                             animate={
                                 state === 'open'
-                                    ? { y: '-42%', scale: 1.04, zIndex: 40 }
+                                    ? { y: '-30%', scale: 1.04, zIndex: 40 }
                                     : state === 'opening'
                                     ? { y: '-10%', scale: 0.95, zIndex: 5 }
                                     : { y: 0, scale: 0.92, zIndex: 5 }
                             }
                             transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: state === 'open' ? 0.05 : 0 }}
-                            className="absolute w-[92%] h-[122%] bg-white border border-[#b38954]/30 rounded-3xl overflow-hidden shadow-2xl p-6 flex flex-col items-center justify-between text-center"
+                            className="absolute w-[92%] h-[122%] bg-[#faf5eb] border border-[#b38954]/30 rounded-3xl overflow-hidden shadow-2xl p-6 flex flex-col items-center justify-between text-center"
                         >
                             {/* Inner Gold Frame Border */}
                             <div className="absolute inset-3 border-4 border-double border-[#b38954]/45 rounded-[1.8rem] pointer-events-none z-10" />
