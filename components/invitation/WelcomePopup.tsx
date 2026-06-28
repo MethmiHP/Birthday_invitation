@@ -118,12 +118,13 @@ export default function WelcomePopup() {
                             </div>
 
                             <motion.button
-                                whileHover={{ scale: 1.03 }}
+                                whileHover={{ scale: 1.03, boxShadow: '0 6px 20px rgba(199, 115, 130, 0.25)' }}
                                 whileTap={{ scale: 0.97 }}
                                 onClick={handleEnter}
-                                className="w-[85%] py-3.5 bg-gradient-to-r from-[#df8f9f] to-[#c77382] hover:from-[#c77382] hover:to-[#7a3547] rounded-full font-bold text-white shadow-md shadow-[#c77382]/20 font-sans tracking-widest text-xs uppercase transition-all duration-300"
+                                className="w-[85%] py-4 bg-[#c77382] hover:bg-[#7a3547] text-white rounded-2xl border-2 border-[#dfc88a] font-sans font-bold tracking-widest text-xs uppercase shadow-md transition-all duration-300 flex items-center justify-center gap-2 mb-2"
                             >
-                                Enter Celebration
+                                <Sparkles size={14} className="text-[#dfc88a]" />
+                                LET'S CELEBRATE!
                             </motion.button>
                         </motion.div>
 
