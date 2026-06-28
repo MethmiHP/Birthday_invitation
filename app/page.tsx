@@ -20,14 +20,15 @@ export default function Home() {
 
   useEffect(() => {
     const handleEnter = () => {
-      // Trigger a beautiful, elegant sparkle confetti burst
+      // Trigger a soft, premium gold shine burst (glitter/dust style)
       confetti({
-        particleCount: 150,
-        spread: 80,
+        particleCount: 110,
+        spread: 70,
         origin: { y: 0.6 },
-        colors: ['#dfc88a', '#c77382', '#faf5eb', '#df8f9f', '#b38954'],
-        shapes: ['star', 'circle'],
-        scalar: 1.2,
+        colors: ['#dfc88a', '#b38954', '#f5e6d3', '#faf5eb'],
+        shapes: ['circle'],
+        scalar: 0.75, // smaller particles for a gold dust/glitter shine look
+        drift: 0.15,
       });
     };
 
