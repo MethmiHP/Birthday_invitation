@@ -13,27 +13,32 @@ export default function FloatingDecorations() {
     const [elements, setElements] = useState<any[]>([]);
 
     useEffect(() => {
-        // Generate only 16 elements (8 per side) for a clean, elegant look
-        const newElements = Array.from({ length: 16 }).map((_, i) => {
+        const isMobileDevice = typeof window !== 'undefined' && window.innerWidth < 640;
+        const count = isMobileDevice ? 8 : 16; // Fewer flowers on mobile (4 per side instead of 8)
+
+        const newElements = Array.from({ length: count }).map((_, i) => {
             const isRightSide = i % 2 === 0;
 
             return {
                 id: i,
                 ...DECORATIONS[Math.floor(Math.random() * DECORATIONS.length)],
                 positionSide: isRightSide ? 'right' : 'left',
-                sideValue: `${Math.random() * 8}%`, // Keep them tighter to the edges
+                // Keep them tightly stuck to the screen margins on mobile so they don't cover text/cards
+                sideValue: isMobileDevice ? `${Math.random() * 2.5}%` : `${Math.random() * 8}%`,
                 initialY: `${Math.random() * 120 - 20}vh`,
                 delay: Math.random() * -40,
-                duration: 40 + Math.random() * 30, // Even slower, gentle drift
-                size: 15 + Math.random() * 20, // Slightly smaller and subtle
-                xOffset: (Math.random() - 0.5) * 50, // Minimal sway
+                duration: 40 + Math.random() * 30, // Gentle drift
+                // Smaller size on mobile (10px - 18px) to be extremely subtle and prevent overlap
+                size: isMobileDevice ? (10 + Math.random() * 8) : (15 + Math.random() * 20),
+                // Minimal horizontal sway on mobile to keep them in the side margins
+                xOffset: isMobileDevice ? (Math.random() - 0.5) * 12 : (Math.random() - 0.5) * 50,
             };
         });
         setElements(newElements);
     }, []);
 
     return (
-        <div className="hidden sm:block fixed inset-0 pointer-events-none overflow-hidden z-0 select-none">
+        <div className="fixed inset-0 pointer-events-none overflow-hidden z-0 select-none">
             {elements.map((el) => (
                 <motion.div
                     key={el.id}
