@@ -40,10 +40,21 @@ export default function WelcomePopup() {
                     exit={{ opacity: 0 }}
                     className="fixed inset-0 z-[100] flex flex-col items-center justify-center px-4 font-serif select-none overflow-hidden"
                 >
-                    {/* Backdrop */}
+                    {/* Backdrop Blur (fades and blurs main content beneath) */}
                     <div
-                        className="absolute inset-0 bg-[#faf5eb]/85 backdrop-blur-md"
+                        className="absolute inset-0 bg-[#faf5eb]/55 backdrop-blur-md"
                         onClick={() => state === 'open' && setIsOpen(false)}
+                    />
+
+                    {/* Backdrop Floral Frame (matches main site background layout) */}
+                    <div
+                        className="absolute inset-0 pointer-events-none opacity-95"
+                        style={{
+                            backgroundImage: "url('/images/floral-bg.png')",
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            backgroundRepeat: 'no-repeat',
+                        }}
                     />
 
 
