@@ -46,35 +46,6 @@ export default function WelcomePopup() {
                         onClick={() => state === 'open' && setIsOpen(false)}
                     />
 
-                    {/* Drifting petals background */}
-                    <div className="absolute inset-0 pointer-events-none">
-                        {[...Array(15)].map((_, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{
-                                    x: Math.random() * 100 + "%",
-                                    y: "-10%",
-                                    opacity: 0,
-                                    scale: 0.5 + Math.random() * 0.5
-                                }}
-                                animate={{
-                                    y: "110vh",
-                                    x: [null, `${(Math.random() - 0.5) * 30}%`],
-                                    opacity: [0, 0.6, 0.6, 0],
-                                    rotate: [0, 180, 360]
-                                }}
-                                transition={{
-                                    duration: 10 + Math.random() * 10,
-                                    repeat: Infinity,
-                                    delay: Math.random() * 5,
-                                    ease: "linear"
-                                }}
-                                className="absolute text-xl"
-                            >
-                                {['🌸', '🍃', '✨', '🌹'][i % 4]}
-                            </motion.div>
-                        ))}
-                    </div>
 
                     {/* 3D Envelope Wrapper */}
                     <div 
