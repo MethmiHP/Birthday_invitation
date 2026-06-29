@@ -35,7 +35,7 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="min-h-screen bg-[#050510] flex items-center justify-center px-4">
+        <div className="min-h-screen bg-[#050510] flex items-center justify-center px-4 text-white admin-panel">
             <Toaster position="top-center" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.1),rgba(255,255,255,0))]" />
 

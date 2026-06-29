@@ -617,3 +617,15 @@ h5,
     max-width: 100px;
   }
 }@keyframes snow { 0% { transform: translateY(-10vh); } 100% { transform: translateY(110vh); } } .animate-snow { animation-name: snow; animation-timing-function: linear; animation-iteration-count: infinite; }
+
+/* ─────────────────────────────────────────────────────────
+   Admin Panel Overrides (making headings white by default)
+───────────────────────────────────────────────────────── */
+:where(.admin-panel) h1,
+:where(.admin-panel) h2,
+:where(.admin-panel) h3,
+:where(.admin-panel) h4,
+:where(.admin-panel) h5 {
+  color: #ffffff;
+}
+

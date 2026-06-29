@@ -106,7 +106,7 @@ export default function AdminDashboard() {
     }
 
     return (
-        <div className="min-h-screen bg-[#050510] text-white">
+        <div className="min-h-screen bg-[#050510] text-white admin-panel">
             <Toaster position="top-right" />
 
             {/* Header */}
